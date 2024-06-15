@@ -2,3 +2,21 @@
 <다항 회귀분석에서 다중 공선성 제거(처리)하기 위함>
 from patsy import dmatrices
 from statsmodels.stats.outliers_influence import variance_inflation_factor as vif
+
+<군집분석>
+1) 계층적
+  from scipy.cluster.hierarchy import linkage, dendrogram, fcluster
+2) 비계층적-KMeans
+  from sklearn.cluster import KMeans
+3) 비계층적-혼합분포 군집분석
+ 
+<시계열분석>
+1) 시계열 분해
+    from statsmodels.tsa.seasonal import seasonal_decompose
+2) 정상성 변환
+   from statsmodels.tsa.stattools import adfuller
+3) AR, MA
+   from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+4) ARIMA
+   from statsmodels.tsa.arimal.model import ARIMA
+  
