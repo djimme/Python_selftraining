@@ -1,0 +1,4 @@
+
+<다항 회귀분석에서 다중 공선성 제거(처리)하기 위함>
+from patsy import dmatrices
+from statsmodels.stats.outliers_influence import variance_inflation_factor as vif
