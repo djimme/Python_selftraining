@@ -1,22 +1,67 @@
+<데이터 분할>
+        from sklearn.model_selection import train_test_split
 
+<데이터 스케일링>
+        from sklearn.preprocessing import StandardScaler, MinMaxScaler
+
+<차원 축소 - 주성분 추출>
+        from sklearn.decomposition import PCA(n_components=정수)
+
+<성능평가 기법>
+    1) 회귀분석
+        from sklearn.metrics import mean_absolute_error,  mean_squared_error, r2_score
+   2) 분류분석
+       from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
+   3) ROC곡선과 AUC스코어
+      from sklearn.metrics import roc_curve, auc, roc_auc_score
+
+<모델학습>
+    1) 회귀분석
+      - 단순회귀:    from sklearn.linear_model import LinearRegression
+      - 다항회귀:    from sklearn.preprocessing import PolynomialFeatures
+      - 다중회귀:    from sklearn.linear_model import Ridge(alpha= ), Lasso(alpha= ), ElasticNet(alpha=, l1_ratio=)
+      - 로지스틱회귀:    from sklearn.linear_model import LogisticRegression
+      - SVR:       from sklearn.svm import SVR
+      - KNR:      from sklearn.neighbors import KNeighborsRegressor(n_neighbors=,weights=문자열)
+      - 의사결정나무:      from sklearn.tree import DecisionTreeRegressor(max_depth=정수)
+     - 앙상블:      from sklearn.ensemble import BaggingRegressor(base_estimator=), AdaBoostRegressor, RandomForestRegressor
+    2) 분류분석
+      - SVM:      from sklearn.svm import SVC(C=), LinearSVC(C=, loss=)
+      - KNN:      from sklearn.neighbors import KNeighborsClassifier(n_neighbors=, weights=문자열)
+     - 의사결정나무:        from sklearn.tree import DecisionTreeClassifier(max_depth=정수)
+     - 앙상블:      from sklearn.ensemble import BaggingClassifier(base_estimator=), AdaBoostClassifier, RandomForestClassifier(n_estimators=정수, min_samples_split=정수)
+     - 나이브베이즈:        from sklearn.naive_bayes import GaussianNB, BernoulliNB, MultinomialNB
+
+<T-검정>
+         - 기본:              import scipy.stats as stats
+         - 정규성 검정:      from scipy.stats import shapiro
+         - 대응표본:          stats.ttest_rel(alternativer=문자열)
+         - 독립표본:          stats.ttest_ind()
+
+<교차분석 카이제곱검정>
+         - 적합성검정:     from scipy.stats  import chisquare
+         - 독립성검정:     from scipy.stats import chi2_contingency
+
+<선형 회귀분석>
+        - 단순 선형회귀:       from statsmodels.formula.api import ols
+               예) lr = ols('price~sqft_living', data=df_house).fit()
+        - 다중 선형회귀:       from statsmodels.formula.api import ols
+               예) lr = ols('Price ~ EngineSize + RPM + Weight + Length + MPGcity + MPGhighway', data=df_cars)
+ 
 <다항 회귀분석에서 다중 공선성 제거(처리)하기 위함>
-from patsy import dmatrices
-from statsmodels.stats.outliers_influence import variance_inflation_factor as vif
+        from patsy import dmatrices
+        from statsmodels.stats.outliers_influence import variance_inflation_factor as vif
 
 <군집분석>
-1) 계층적
-  from scipy.cluster.hierarchy import linkage, dendrogram, fcluster
-2) 비계층적-KMeans
-  from sklearn.cluster import KMeans
-3) 비계층적-혼합분포 군집분석
+       -  계층적:       from scipy.cluster.hierarchy import linkage, dendrogram, fcluster
+       -  비계층적-KMeans:          from sklearn.cluster import KMeans(n_clusters=)
+       -  비계층적-혼합분포 군집분석:       from sklearn.mixture import GaussianMixture
  
 <시계열분석>
-1) 시계열 분해
-    from statsmodels.tsa.seasonal import seasonal_decompose
-2) 정상성 변환
-   from statsmodels.tsa.stattools import adfuller
-3) AR, MA
-   from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
-4) ARIMA
-   from statsmodels.tsa.arimal.model import ARIMA
-  
+      - 시계열 분해:            from statsmodels.tsa.seasonal import seasonal_decompose(dataFrame, model=문자열)
+               예)  seasonal_decompose(ts, model='multiplicative')
+      -  정상성 변환:         from statsmodels.tsa.stattools import adfuller
+               예) adf = adfuller(train, regression='ct')
+      - AR, MA:           from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+     - ARIMA:            from statsmodels.tsa.arimal.model import ARIMA
+               예) ARIMA(train, order=(2,0,2), trend='ct')
