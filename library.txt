@@ -43,6 +43,7 @@
 <T-검정>
          - 기본:              import scipy.stats as stats
          - 정규성 검정:      from scipy.stats import shapiro
+         - 등분산성 검정:   from scipy.stats import levene
          - 대응표본:          stats.ttest_rel(alternativer=문자열)
          - 독립표본:          stats.ttest_ind()
 
