@@ -53,8 +53,13 @@
 <선형 회귀분석>
         - 단순 선형회귀:       from statsmodels.formula.api import ols
                예) lr = ols('price~sqft_living', data=df_house).fit()
+                  lr.summary()
         - 다중 선형회귀:       from statsmodels.formula.api import ols
-               예) lr = ols('Price ~ EngineSize + RPM + Weight + Length + MPGcity + MPGhighway', data=df_cars)
+               예) lr = ols('Price ~ EngineSize + RPM + Weight + Length + MPGcity + MPGhighway', data=df_cars).fit()
+                   lr.summary()
+        - 로지스틱 회귀:       from statsmodels.formula.api import logit
+               예) model = logit('Survived ~ C(Pclass) + Gender + SibSp + Parch', data=df_titanic).fit()
+                  model.params
  
 <다항 회귀분석에서 다중 공선성 제거(처리)하기 위함>
         from patsy import dmatrices
