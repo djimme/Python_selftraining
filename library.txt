@@ -1,8 +1,10 @@
 <데이터 범주형 변환>
+      1) LabelEncoder
         from sklearn.preprocessing import LabelEncoder
         for col in cols:        
                 le = LabelEncoder()
                 X[col] = le.fit_transform(X[col])
+      2) pandas.getdummies
 
 <데이터 분할>
         from sklearn.model_selection import train_test_split
