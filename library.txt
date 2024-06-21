@@ -47,6 +47,18 @@
          - 대응표본:          stats.ttest_rel(alternativer=문자열)
          - 독립표본:          stats.ttest_ind()
 
+<분산분석>
+        - 일원배치 분산분석(독립변수 1개, 종속변수 1개):     from scipy.stats import f_oneway
+                                        예) stats.f_oneway(df_setosa, df_versicolor, df_virginica)
+        - 이원배치 분산분석(독립변수 2개, 종속변수 1개):      
+                         from statsmodels.formula.api import ols
+                         from statsmodels.stats.anova import anova_lm
+
+                     예) formula = 'mpg~C(cyl)+C(am)+C(cyl):C(am)'
+                            model = ols(formula, df_mtcarsd).fit()
+                            aov_table = anova_lm(model, typ=2)
+                            aov_table
+
 <교차분석 카이제곱검정>
          - 적합성검정:     from scipy.stats  import chisquare
          - 독립성검정:     from scipy.stats import chi2_contingency
